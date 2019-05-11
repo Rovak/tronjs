@@ -4,8 +4,8 @@ import xhr from "axios";
 import {find} from "lodash";
 import {GraphQLScalarType} from "graphql";
 import {getNetwork, tronWeb} from "./network";
-import {toUtf8} from "@trx/core/utils";
-import {addressFromHex} from "@trx/core/utils/address";
+import {toUtf8} from "@trx/core/dist/utils";
+import {addressFromHex} from "@trx/core/dist/utils/address";
 
 export function buildTronWeb(privateKey) {
 

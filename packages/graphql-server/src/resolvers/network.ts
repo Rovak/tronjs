@@ -1,4 +1,4 @@
-import HttpApi from "@trx/core/clients/http";
+import HttpApi from "@trx/core/dist/clients/http";
 import TronWeb from "tronweb";
 
 export function getNetwork() {

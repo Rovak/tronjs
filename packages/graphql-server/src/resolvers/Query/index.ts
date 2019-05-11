@@ -1,7 +1,7 @@
 import {tronWeb} from "../network";
 import {getAccount, getContract, getToken} from "../utils";
-import {toUtf8} from "@trx/core/utils";
-import {addressFromHex} from "@trx/core/utils/address";
+import {toUtf8} from "@trx/core/dist/utils";
+import {addressFromHex} from "@trx/core/dist/utils/address";
 
 export async function account(parent, args) {
   return await getAccount(args.address);

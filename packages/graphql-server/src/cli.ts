@@ -1,4 +1,3 @@
-// import "module-alias/register";
 import program from 'commander'
 import {server} from "./server";
 

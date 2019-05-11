@@ -1,6 +1,6 @@
 import xhr from "axios";
 import {getAccount} from "./utils";
-import {prepareEventData} from "@trx/core/blockchain/contract/events";
+import {prepareEventData} from "@trx/core/dist/blockchain/contract/events";
 
 export function origin({ originAddress }) {
   return getAccount(originAddress);

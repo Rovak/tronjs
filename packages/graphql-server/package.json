@@ -40,9 +40,6 @@
     "graphql": "^14.1.0",
     "**/graphql": "^14.1.0"
   },
-  "_moduleAliases": {
-    "@trx/core": "../core/dist"
-  },
   "files": [
     "dist"
   ],

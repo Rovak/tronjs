@@ -2,8 +2,8 @@ import {tronWeb} from "./network";
 import xhr from "axios";
 import {find} from "lodash";
 import {getContractObj, trc10Tokens, trc20Contracts} from "./utils";
-import {toUtf8} from "@trx/core/utils";
-import {addressFromHex} from "@trx/core/utils/address";
+import {toUtf8} from "@trx/core/dist/utils";
+import {addressFromHex} from "@trx/core/dist/utils/address";
 
 export async function trc20({ address }, { address: contractAddress }) {
   if (!trc20Contracts[contractAddress]) {
