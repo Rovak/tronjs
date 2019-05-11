@@ -226,7 +226,7 @@ type Query {
 type Mutation {
 
     # Send TRX
-    sendTrx(
+    trxTransfer(
         privateKey: String!,
         # Hex or Base58 address of the receiving wallet
         to: String!,
@@ -235,7 +235,7 @@ type Mutation {
     ): TxResponse
 
     # Send a TRC10 token
-    sendTRC10(
+    trc10Transfer(
         privateKey: String!,
         # Hex or Base58 address of the receiving wallet
         to: String!,
@@ -246,11 +246,22 @@ type Mutation {
     ): TxResponse
 
 
-    # Send a TRC10 token
-    sendTRC20(
+    # Send a TRC20 token
+    trc20Transfer(
         privateKey: String!,
         # Hex or Base58 address of the receiving wallet
         to: String!,
+        # ID of the token
+        contractAddress: String!,
+        # Amount to send
+        amount: Int!
+    ): TxResponse
+
+    # Approve TRC20 token
+    trc20Approve(
+        privateKey: String!,
+        # Hex or Base58 address of the receiving wallet
+        spender: String!,
         # ID of the token
         contractAddress: String!,
         # Amount to send
@@ -423,13 +434,4 @@ type WalletResponse {
     address: String
     addressHex: String
     privateKey: String
-}
-
-type ContractEvent {
- contract: String
- index: Float
-}
-
-type Subscription {
- contractEvent(query: String): ContractEvent
 }

@@ -1,4 +1,4 @@
-import * as Mutation from "./Mutation";
+import { Mutation } from "./Mutation";
 import * as Query from "./Query";
 import * as TransactionContract from "./TransactionContract";
 import * as Contract from "./Contract";
