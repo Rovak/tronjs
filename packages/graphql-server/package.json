@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/cli.ts",
-    "build": "tsc -p ./ && chmod +x ./dist/cli.js && ./bin/shebangify dist/cli.js",
+    "build": "tsc -p ./ && chmod +x ./dist/cli.js && ./bin/shebangify dist/cli.js && cp ./src/schema/schema.graphqls ./dist/schema/schema.graphqls",
     "start": "node dist/cli.js"
   },
   "bin": {
