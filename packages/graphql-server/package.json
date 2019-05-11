@@ -1,6 +1,6 @@
 {
   "name": "trx-graphql-server",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "author": "Rovak",
   "license": "MIT",
   "scripts": {
