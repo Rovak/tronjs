@@ -9,7 +9,7 @@
     "start": "node dist/cli.js"
   },
   "bin": {
-    "trx-graphql-server": "dist/server.js"
+    "trx-graphql-server": "dist/cli.js"
   },
   "publishConfig": {
     "access": "public"
