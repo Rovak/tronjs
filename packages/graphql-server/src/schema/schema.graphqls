@@ -1,0 +1,435 @@
+scalar JSON
+
+type Node {
+    host: String
+    port: Int
+    info: NodeInfo
+}
+
+type NodeInfo {
+    block: Block
+    solidityBlock: Block
+    config: NodeInfoConfig
+    machine: NodeInfoMachine
+    version: String
+}
+
+type NodeInfoConfig {
+    backupPriority: Int
+    databaseVersion: Int
+    discoverEnabled: Boolean
+    listenPort: Int
+    minTimeRatio: Float
+    maxTimeRatio: Float
+    p2pVersion: String
+    supportsConstant: Boolean
+}
+
+type NodeInfoMachine {
+    cpuCount: Int
+    cpuRate: Float
+    javaVersion: String
+    jvmFreeMemory: Float
+    jvmTotalMemory: Float
+    operatingSystemName: String
+    totalMemory: Float
+}
+
+type Account {
+    address: String
+    addressHex: String
+    balance: AccountBalance
+    net: AccountNet
+    name: String
+    isWitness: Boolean
+    dateCreated: Float
+    frozenBalance: [AccountFrozenBalance]
+
+    transactions(limit: Int, start: Int): [AccountTransaction]
+}
+
+type AccountTransaction {
+    hash: String
+    block: Float
+    tx: Transaction
+}
+
+type AccountBalance {
+    trx: Float
+    trc20(address: String!): TRC20
+    trc10(id: String!): TRC10
+}
+
+type TRC20 {
+    address: ID
+    balance: Float
+    balanceSun: Float
+    totalSupply: Float
+    name: String
+    decimals: Float
+    symbol: String
+}
+
+type TRC10 {
+    address: ID
+    balance: Float
+    balanceSun: Float
+    totalSupply: Float
+    name: String
+    decimals: Float
+    symbol: String
+}
+
+type AccountFrozenBalance {
+    balance: Float
+    expires: Float
+}
+
+type AccountNet {
+    freeBandwidthUsed: Float
+    freeBandwidthLimit: Float
+    bandwidthUsed: Float
+    bandwidthLimit: Float
+}
+
+type Contract {
+    address: String
+    originAddress: String
+    origin: Account
+    bytecode: String
+    userResourcePercentage: Int
+    events(since: Float, limit: Float, page: Float, sort: String, event: String): [ContractEvent]
+}
+
+type ContractEvent {
+    transactionId: String
+    blockTimestamp: Float
+    blockNumber: Float
+    eventName: String
+    contractAddress: String
+    result: JSON
+    resultRaw: JSON
+    resultTypes: JSON
+}
+
+type Block {
+    number: Float
+    id: String
+}
+
+type Transaction {
+    id: String
+    contract: TransactionContract
+    info: TransactionInfo
+    events: [TransactionEvent]
+}
+
+type TransactionEvent {
+    contractAddress: String
+    name: String
+    result: JSON
+}
+
+type TransactionInfo {
+    blockNumber: Float
+    blockTimestamp: Float
+    block: Block
+    receipt: TransactionInfoReceipt
+    fee: Float
+}
+
+type TransactionInfoReceipt {
+    energyUsage: Float
+    energyUsageTotal: Float
+    bandwidthUsage: Float
+    result: String
+}
+
+type TransactionContract {
+    type: String
+    parametersRaw: JSON
+    triggerSmartContract: TriggerSmartContract
+}
+
+type TriggerSmartContract {
+    method: String
+    params: JSON
+}
+
+type Proposal {
+    id: Float
+    proposer: Account
+    approvals: [ProposalApproval]
+}
+
+type ProposalApproval {
+    address: String
+    account: Account
+}
+
+type Exchange {
+    id: ID
+    creatorAddress: String
+    creator: Account
+    firstTokenId: String
+    secondTokenId: String
+    firstTokenBalance: Float
+    secondTokenBalance: Float
+    firstToken: Token
+    secondToken: Token
+}
+
+type Token {
+    id: ID
+    ownerAddress: String
+    owner: Account
+    decimals: Float
+    name: String
+    abbrevation: String
+    totalSupply: Float
+    trxNum: Float
+    num: Float
+    description: String
+    url: String
+}
+
+type Witness {
+    address: ID
+    account: Account
+    url: String
+    blocksProduced: Float
+    votes: Float
+    latestBlock: Float
+}
+
+type NextVoteRound {
+    # UTC Timestamp when next round starts
+    timestamp: Float
+    # Seconds until next round
+    timeLeft: Float
+}
+
+type Query {
+    account(address: String!): Account
+    contract(address: String!): Contract
+    transaction(id: String!): Transaction
+    proposal(id: Float!): Proposal
+    proposals: [Proposal]
+    exchange(id: Float!): Exchange
+    token(id: String!): Token
+    witnesses: [Witness]
+    nodes: [Node]
+    nextRound: NextVoteRound
+}
+
+## Mutations
+type Mutation {
+
+    # Send TRX
+    sendTrx(
+        privateKey: String!,
+        # Hex or Base58 address of the receiving wallet
+        to: String!,
+        # Amount of TRX to send in Sun (1000000 Sun = 1 TRX)
+        amount: Int!
+    ): TxResponse
+
+    # Send a TRC10 token
+    sendTRC10(
+        privateKey: String!,
+        # Hex or Base58 address of the receiving wallet
+        to: String!,
+        # ID of the token
+        tokenId: String!,
+        # Amount to send
+        amount: Int!
+    ): TxResponse
+
+
+    # Send a TRC10 token
+    sendTRC20(
+        privateKey: String!,
+        # Hex or Base58 address of the receiving wallet
+        to: String!,
+        # ID of the token
+        contractAddress: String!,
+        # Amount to send
+        amount: Int!
+    ): TxResponse
+
+    # Generate a new wallet
+    generateWallet: WalletResponse
+
+    # Update the account, this can only be done once
+    updateAccount(
+        privateKey: String!,
+        # Name to give the wallet
+        name: String!
+    ): TxResponse
+
+    # Update the ratio of energy consumption for a smart contract
+    updateSmartContractUserResourceConsumption(
+        privateKey: String!,
+        # Smart Contract Address
+        contractAddress: String!,
+        # Same as User Pay Ratio. Ratio of the smart contract cost user should pay.
+        percentage: Int!): TxResponse
+
+    # Update the limit of a smart contract
+    updateSmartContractEnergyLimit(
+        privateKey: String!,
+        # Smart Contract Address
+        contractAddress: String!,
+        # The maximum energy the creator sets. The greatest amount of energy the creator consumes during contract execution or creation process.
+        limit: Int!): TxResponse
+
+    # Freeze TRX to generate Energy or Bandwidth
+    freezeBalance(
+        privateKey: String!,
+        # Amount to freeze in SUN
+        amount: Int!,
+        # Resource type, Resource is the type of resource you are freezing for. Must be either ENERGY or BANDWIDTH
+        resource: String!,
+        # You can freeze TRX to give ENERGY or BANDWIDTH resources to other users. Receiver Address refers to address of the other user.
+        receiverAddress: String
+    ): TxResponse
+
+    # Unfreeze your TRX
+    unfreezeBalance(
+        privateKey: String!,
+        # Resource type, Resource is the type of resource you are freezing for. Must be either ENERGY or BANDWIDTH
+        resource: String!,
+        # You can freeze TRX to give ENERGY or BANDWIDTH resources to other users. Receiver Address refers to address of the other user.
+        receiverAddress: String
+    ): TxResponse
+
+    # Distribute votes to Super Representatives
+    vote(
+        privateKey: String!,
+        # Vote Distribution
+        votes: [Vote!]!
+    ): TxResponse
+
+    # Withdraw rewards gained from producing blocks and allowance
+    withdrawRewards(
+        privateKey: String!
+    ): TxResponse
+
+    # Purchase a token
+    purchaseToken(
+        privateKey: String!,
+        # Address of token creator
+        issuerAddress: String!,
+        # ID of the token
+        tokenId: String!,
+        # Amount to purchase
+        amount: String !
+    ): TxResponse
+
+
+
+    # Purchase a token
+    updateToken(
+        privateKey: String!,
+
+        # Description of the token
+        description: String!,
+
+        # URL of the token
+        url: String!,
+
+        # The creator's 'donated' bandwidth for use by token holders
+        freeBandwidth: String!,
+
+        # Out of `totalFreeBandwidth`, the amount each token holder get
+        freeBandwidthLimit: String!
+    ): TxResponse
+
+    # Create a proposal
+    createProposal(
+        privateKey: String!,
+
+        parameters: [ProposalParameter!]!
+    ): TxResponse
+
+    # Delete a proposal
+    deleteProposal(
+        privateKey: String!,
+        id: Int!
+    ): TxResponse
+
+    # Vote proposal
+    voteProposal(
+        privateKey: String!,
+        id: Int!,
+        approved: Boolean!
+    ): TxResponse
+
+    # Create TRX Exchange
+    createTRXExchange(
+        privateKey: String!,
+        tokenName: String!,
+        tokenBalance: Float!,
+        trxBalance: Float!
+    ): TxResponse
+
+    # Create Token Exchange
+    createTokenExchange(
+        privateKey: String!,
+        firstTokenName: String!,
+        firstTokenBalance: Float!,
+        secondTokenName: String!,
+        secondTokenBalance: Float!
+    ): TxResponse
+
+    injectExchangeTokens(
+        privateKey: String!,
+        id: Int!,
+        tokenName: String!,
+        tokenAmount: Float!
+    ): TxResponse
+
+    withdrawExchangeTokens(
+        privateKey: String!,
+        id: Int!,
+        tokenName: String!,
+        tokenAmount: Float!
+    ): TxResponse
+
+    applyForSuperRepresentative(
+        privateKey: String!,
+        url: String!
+    ): TxResponse
+}
+
+
+input Vote {
+    address: String!
+    votes: Float!
+}
+
+input ProposalParameter {
+    id: Int!
+    value: String!
+}
+
+
+type TxResponse {
+    hash: String
+    success: Boolean
+}
+
+type WalletResponse {
+    address: String
+    addressHex: String
+    privateKey: String
+}
+
+type ContractEvent {
+ contract: String
+ index: Float
+}
+
+type Subscription {
+ contractEvent(query: String): ContractEvent
+}

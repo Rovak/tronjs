@@ -1,0 +1,48 @@
+{
+  "name": "@trx/core",
+  "version": "0.0.11",
+  "author": "Rovak <ik@royvankaathoven.nl>",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha -r ts-node/register test/*",
+    "build": "tsc --outDir ./dist",
+    "build:cli": "tsc  --moduleResolution node --module amd --outFile ./dist/cli.js ./src/cli/index.ts",
+    "watch": "tsc -w --outDir ./dist",
+    "publish-npm": "tsc --outDir ./dist && yarn publish"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/buffers": "^0.1.31",
+    "@types/es6-promise": "^3.3.0",
+    "@types/expect": "^1.20.3",
+    "@types/lodash": "^4.14.119",
+    "@types/mocha": "^5.2.5",
+    "assert": "^1.4.1",
+    "axios": "^0.18.0",
+    "bignumber.js": "^8.0.1",
+    "bs58": "^4.0.1",
+    "chai": "^4.1.2",
+    "commander": "^2.19.0",
+    "csv-reader": "^1.0.3",
+    "elliptic": "^6.4.1",
+    "ethers": "^4.0.20",
+    "express": "^4.16.4",
+    "js-sha3": "^0.8.0",
+    "jssha": "^2.3.1",
+    "lodash": "^4.17.11",
+    "module-alias": "^2.2.0",
+    "rxjs": "^6.3.3",
+    "sequelize": "^4.42.0",
+    "sha3": "^1.2.2",
+    "tronweb": "^2.1.17",
+    "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.0.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "gitHead": "bb34b24be6c12af9323a80585e3f958ffe09eec8"
+}

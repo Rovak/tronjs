@@ -1,0 +1,14 @@
+{
+  "name": "trx",
+  "devDependencies": {
+    "lerna": "^3.10.5"
+  },
+  "scripts": {
+    "start:graphql": "cd packages/graphql-server && yarn start",
+    "watch": "lerna run watch --parallel --concurrency 10 --stream",
+    "dev:graphql": "cd packages/graphql-server && yarn dev",
+    "build:graphql": "lerna run --scope @trx/graphql build",
+    "build": "lerna run build",
+    "npm-publish": "lerna bootstrap && lerna run build && lerna publish"
+  }
+}
