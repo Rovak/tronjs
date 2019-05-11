@@ -1,6 +1,6 @@
 {
   "name": "trx-graphql-server",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "author": "Rovak",
   "license": "MIT",
   "scripts": {
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@trx/core": "^0.0.11",
+    "@trx/core": "^0.0.12",
     "@trx/graphql": "^0.0.6",
     "@types/buffers": "^0.1.31",
     "@types/es6-promise": "^3.3.0",
