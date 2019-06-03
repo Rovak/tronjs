@@ -34,7 +34,11 @@
     "tronweb": "^2.5.3",
     "ts-node": "^7.0.1",
     "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "^3.0.3"
+    "typescript": "^3.0.3",
+    "spel2js": "^0.2.5",
+    "redis": "^2.8.0",
+    "async-redis": "^1.1.7",
+    "@types/redis": "^2.8.13"
   },
   "resolutions": {
     "graphql": "^14.2.1",

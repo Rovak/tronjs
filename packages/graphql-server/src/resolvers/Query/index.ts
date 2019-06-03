@@ -2,8 +2,12 @@ import {tronWeb} from "../network";
 import {getAccount, getContract, getToken} from "../utils";
 import {toUtf8} from "@trx/core/dist/utils";
 import {addressFromHex} from "@trx/core/dist/utils/address";
+const cluster = require('cluster');
+
 
 export async function account(parent, args) {
+  console.log(`Worker ${process.pid} handled`);
+
   return await getAccount(args.address);
 }
 

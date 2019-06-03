@@ -12,6 +12,6 @@ export interface TransactionJSON {
 
 export interface GetNowBlockJSON {
   blockID: string;
-  transactions: TransactionJSON;
+  transactions: TransactionJSON[];
   block_header: any;
 }

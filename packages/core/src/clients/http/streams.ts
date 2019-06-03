@@ -28,6 +28,7 @@ export default class HttpApiStreams {
 
           return this.getBlockTimer()
             .pipe(
+              tap(b => console.log("block timer", blockNumber, b)),
               concatMap(() => this.httpApi.getNowBlock()),
               distinctUntilChanged(nextBlock => {
                 return nextBlock.block_header.raw_data.number;
@@ -45,12 +46,11 @@ export default class HttpApiStreams {
                       retryWhen(errors =>
                         errors.pipe(
                           tap(val => console.error("blockByNum error", val)),
-                          delay(1000)
+                          delay(100)
                         )
                       ),
                     );
                 } else {
-                  // console.log("SINGLE");
                   return of(nextBlock);
                 }
               }),
@@ -132,7 +132,6 @@ export default class HttpApiStreams {
 
     return  this.getBlockStream()
       .pipe(
-        tap((x: any) => console.log("block", x.block_header.raw_data.number)),
         concatMap(block => of(block)
           .pipe(
             this.getTransactionsFromBlock(),

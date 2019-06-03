@@ -1,5 +1,10 @@
-import {waitFor} from "../utils";
 import {withFilter} from "apollo-server";
+import RedisPubSub from "../../infrastructure/redis/pubsub";
+import RedisFactory from "../../infrastructure/redis/factory";
+import { StandardContext, SpelExpressionEvaluator } from 'spel2js';
+import {addressFromHex} from "@trx/core/src/utils/address";
+import {waitFor} from "@trx/core/src/utils/promises";
+
 
 function evalInContext(js, context) {
   try {
@@ -39,9 +44,31 @@ const transactions = [
 ];
 
 
-function createListener(expression) {
+function createListener(expression = '') {
 
-  const txs = transactions.slice();
+  const client = new RedisPubSub(new RedisFactory().createClient());
+
+  const txs = [];
+
+  const context = StandardContext.create();
+  const compiledExpression = SpelExpressionEvaluator.compile(expression);
+
+  const sub = client.subscribe("full:transaction").subscribe((tx: any) => {
+
+
+    const locals = {
+      parameter: tx.raw_data.contract[0].parameter.value,
+      fromAddress: addressFromHex(tx.raw_data.contract[0].parameter.value.owner_address),
+    };
+
+    try {
+      if (!expression || compiledExpression.eval(context, locals)) {
+        txs.push(tx);
+      }
+    } catch (e) {
+      console.error("error", locals);
+    }
+  });
 
   return {
     [Symbol.asyncIterator]() {
@@ -52,38 +79,38 @@ function createListener(expression) {
       if (txs.length > 0) {
         const tx = txs.pop();
 
-        if (evalInContext(expression, tx)) {
-          return {
-            value: {
-              contractEvent: tx,
-            },
-            done: false
-          };
-        }
-
         return {
-          value: null,
-          done: false
+          value: {
+            transaction: {
+              hash: tx.txID,
+              parameters: tx.raw_data.contract[0].parameter.value,
+            },
+          },
+          done: false,
         };
       }
 
+      await waitFor(300);
+
       return {
         value: null,
-        done: true
+        done: false
       };
     },
     return() {
+      sub.unsubscribe();
       return Promise.resolve({ value: undefined, done: true });
     },
     throw(error) {
+      sub.unsubscribe();
       return Promise.reject(error);
     },
   }
 }
 
-export const contractEvent = {
+export const transaction = {
   subscribe: withFilter(
-    (_, { query }) => createListener(query),
+    (_, { filter }) => createListener(filter),
     (payload, variables) => {
       return !!payload;
     },

@@ -35,5 +35,5 @@ export {
   TransactionInfo,
   TRC20,
   NextVoteRound,
-  // Subscription,
+  Subscription,
 }

@@ -34,7 +34,6 @@ export function parseResultData(methodResult: any, resultTypes: {[ key: string]:
           value = value.map(v => v.toString());
           break;
         default:
-          console.log("fallback", resultTypes[name]);
           value = value.toString();
           break;
       }

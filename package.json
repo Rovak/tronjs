@@ -9,6 +9,7 @@
     "dev:graphql": "cd packages/graphql-server && yarn dev",
     "build:graphql": "lerna run --scope @trx/graphql build",
     "build": "lerna run build",
-    "npm-publish": "lerna bootstrap && lerna run build && lerna publish"
+    "npm-publish": "lerna bootstrap && lerna run build && lerna publish",
+    "importer:dev": "lerna run --stream --scope trx-import-server dev"
   }
 }

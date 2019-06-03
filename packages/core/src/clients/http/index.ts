@@ -95,7 +95,7 @@ export default class HttpApi {
    */
   async getNowBlock() {
     const {data} = await xhr.get(`${this.getUrl()}/wallet/getnowblock`, {
-      timeout: 5000
+      timeout: 10000
     });
 
     return data;
@@ -106,7 +106,7 @@ export default class HttpApi {
    */
   async getBlockByNum(num: number) {
     const {data, request} = await xhr.get(`${this.getUrl()}/wallet/getblockbynum?num=${num}`, {
-      timeout: 5000
+      timeout: 10000
     });
 
     if (Object.keys(data).length === 0) {
@@ -121,7 +121,7 @@ export default class HttpApi {
    */
   async getBlockRange(from: number, to: number) {
     const {data: { block }} = await xhr.get(`${this.getUrl()}/wallet/getblockbylimitnext?startNum=${from}&endNum=${to}`, {
-      timeout: 5000
+      timeout: 10000
     });
 
     return block;

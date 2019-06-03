@@ -407,10 +407,22 @@ type Mutation {
         tokenAmount: Float!
     ): TxResponse
 
+    # Apply to be a Super Representative
     applyForSuperRepresentative(
         privateKey: String!,
+
+        # Website where users can find more information about your SR
         url: String!
     ): TxResponse
+}
+
+type TransactionSubscription {
+    parameters: JSON
+    hash: String
+}
+
+type Subscription {
+    transaction(filter: String): TransactionSubscription
 }
 
 

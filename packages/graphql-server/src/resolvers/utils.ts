@@ -135,10 +135,6 @@ export async function getToken(id) {
   }
 }
 
-export function waitFor(timeout) {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-}
-
 export const trc20Contracts = {};
 export const contracts = {};
 export const trc10Tokens = {};
