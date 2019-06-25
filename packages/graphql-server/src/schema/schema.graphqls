@@ -115,6 +115,8 @@ type ContractEvent {
 type Block {
     number: Float
     id: String
+    transactionAt(index: Int): Transaction
+    transactions: [Transaction]
 }
 
 type Transaction {
@@ -217,6 +219,8 @@ type Query {
     proposals: [Proposal]
     exchange(id: Float!): Exchange
     token(id: String!): Token
+    block(number: ID!): Block
+    blocks(from: Int!, to: Int!): [Block]
     witnesses: [Witness]
     nodes: [Node]
     nextRound: NextVoteRound

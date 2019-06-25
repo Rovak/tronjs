@@ -83,11 +83,23 @@ export async function getAccountNet(address) {
   }
 }
 
+export function mapTransaction(tx) {
+  const contract = tx.raw_data.contract[0];
+  return {
+    id: tx.txID,
+    contract: {
+      type: contract.type,
+      parametersRaw: contract.parameter.value,
+    }
+  }
+}
+
 export async function getBlock(number) {
   const block = await tronWeb.trx.getBlockByNumber(number);
   return {
     id: block.blockID,
     number: block.block_header.raw_data.number,
+    transactions: block.transactions.map(mapTransaction)
   }
 }
 
@@ -145,10 +157,10 @@ export const trc10Tokens = {};
 
 export async function getContractObj(tw, contractAddress) {
   if (!contracts[contractAddress]) {
-    contracts[contractAddress] = await tw.contract().at(contractAddress);
+    contracts[contractAddress] = tw.contract().at(contractAddress);
   }
 
-  return contracts[contractAddress];
+  return await contracts[contractAddress];
 }
 
 const simpleMemoryCache = {};

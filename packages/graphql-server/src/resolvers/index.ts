@@ -16,6 +16,7 @@ import * as TransactionInfo from "./TransactionInfo";
 import * as TRC20 from "./TRC20";
 import * as NextVoteRound from "./NextVoteRound";
 import * as Subscription from "./Subscription";
+import * as Block from "./Block";
 
 export {
   Mutation,
@@ -35,5 +36,6 @@ export {
   TransactionInfo,
   TRC20,
   NextVoteRound,
+  Block,
   // Subscription,
 }

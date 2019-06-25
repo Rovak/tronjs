@@ -1,5 +1,5 @@
 import {tronWeb} from "../network";
-import {getAccount, getContract, getToken} from "../utils";
+import {getAccount, getBlock, getContract, getToken, mapTransaction} from "../utils";
 import {toUtf8} from "@trx/core/dist/utils";
 import {addressFromHex} from "@trx/core/dist/utils/address";
 
@@ -45,8 +45,8 @@ export async function proposals(parent, args) {
   }));
 }
 
-export async function exchange(parent, args) {
-  const exchange = await tronWeb.trx.getExchangeByID(args.id);
+export async function exchange(parent, { id }) {
+  const exchange = await tronWeb.trx.getExchangeByID(id);
   return {
     id: exchange.exchange_id,
     creatorAddress: addressFromHex(exchange.creator_address),
@@ -66,6 +66,18 @@ export async function witnesses(parent, args) {
     latestBlock: witness.latestBlockNum,
     url: witness.url,
   }))
+}
+
+export async function block(parent, { number }) {
+  return await getBlock(number);
+}
+
+export async function blocks(parent, { from, to }) {
+  const blocks = await tronWeb.trx.getBlockRange(parseInt(from), parseInt(to));
+  return blocks.map(block => ({
+    id: block.blockID,
+    number: block.block_header.raw_data.number,
+  }));
 }
 
 export async function nodes(parent, args) {
