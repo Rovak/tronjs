@@ -34,7 +34,7 @@
     "lodash": "^4.17.11",
     "module-alias": "^2.2.0",
     "rxjs": "^6.3.3",
-    "sequelize": "^4.42.0",
+    "sequelize": "^5.15.1",
     "sha3": "^1.2.2",
     "tronweb": "^2.1.17",
     "ts-node": "^7.0.1",
