@@ -31,7 +31,7 @@
     "express": "^4.16.4",
     "js-sha3": "^0.8.0",
     "jssha": "^2.3.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "module-alias": "^2.2.0",
     "rxjs": "^6.3.3",
     "sequelize": "^4.42.0",
