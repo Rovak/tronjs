@@ -112,6 +112,38 @@
     ts-node-dev "^1.0.0-pre.32"
     typescript "^3.0.3"
 
+"@trx/core@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@trx/core/-/core-0.0.12.tgz#c850661792679aa2af64619156f6f6229361a42c"
+  integrity sha512-U801zxjhpL0yszpg2wBEwIcb2+6/fWXQd0OOtzzbWu36xqL4phlGUFbxwgysWDdGCq0ayK8nNnZNHeKHDugukQ==
+  dependencies:
+    "@types/buffers" "^0.1.31"
+    "@types/es6-promise" "^3.3.0"
+    "@types/expect" "^1.20.3"
+    "@types/lodash" "^4.14.119"
+    "@types/mocha" "^5.2.5"
+    assert "^1.4.1"
+    axios "^0.18.0"
+    bignumber.js "^8.0.1"
+    bs58 "^4.0.1"
+    chai "^4.1.2"
+    commander "^2.19.0"
+    csv-reader "^1.0.3"
+    elliptic "^6.4.1"
+    ethers "^4.0.20"
+    express "^4.16.4"
+    js-sha3 "^0.8.0"
+    jssha "^2.3.1"
+    lodash "^4.17.11"
+    module-alias "^2.2.0"
+    rxjs "^6.3.3"
+    sequelize "^4.42.0"
+    sha3 "^1.2.2"
+    tronweb "^2.1.17"
+    ts-node "^7.0.1"
+    ts-node-dev "^1.0.0-pre.32"
+    typescript "^3.0.3"
+
 "@trx/graphql@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@trx/graphql/-/graphql-0.0.6.tgz#26957e139b55925c2c41cc0865fce21db0aae0fc"
@@ -1807,9 +1839,9 @@ node-emoji@^1.4.1:
     lodash.toarray "^4.4.0"
 
 node-fetch@^2.1.2, node-fetch@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
-  integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-notifier@^4.0.2:
   version "4.6.1"
