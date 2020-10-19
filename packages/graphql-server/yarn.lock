@@ -112,6 +112,38 @@
     ts-node-dev "^1.0.0-pre.32"
     typescript "^3.0.3"
 
+"@trx/core@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@trx/core/-/core-0.0.12.tgz#c850661792679aa2af64619156f6f6229361a42c"
+  integrity sha512-U801zxjhpL0yszpg2wBEwIcb2+6/fWXQd0OOtzzbWu36xqL4phlGUFbxwgysWDdGCq0ayK8nNnZNHeKHDugukQ==
+  dependencies:
+    "@types/buffers" "^0.1.31"
+    "@types/es6-promise" "^3.3.0"
+    "@types/expect" "^1.20.3"
+    "@types/lodash" "^4.14.119"
+    "@types/mocha" "^5.2.5"
+    assert "^1.4.1"
+    axios "^0.18.0"
+    bignumber.js "^8.0.1"
+    bs58 "^4.0.1"
+    chai "^4.1.2"
+    commander "^2.19.0"
+    csv-reader "^1.0.3"
+    elliptic "^6.4.1"
+    ethers "^4.0.20"
+    express "^4.16.4"
+    js-sha3 "^0.8.0"
+    jssha "^2.3.1"
+    lodash "^4.17.11"
+    module-alias "^2.2.0"
+    rxjs "^6.3.3"
+    sequelize "^4.42.0"
+    sha3 "^1.2.2"
+    tronweb "^2.1.17"
+    ts-node "^7.0.1"
+    ts-node-dev "^1.0.0-pre.32"
+    typescript "^3.0.3"
+
 "@trx/graphql@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@trx/graphql/-/graphql-0.0.6.tgz#26957e139b55925c2c41cc0865fce21db0aae0fc"
@@ -1850,9 +1882,9 @@ object-keys@^1.0.12:
   integrity sha512-FTMyFUm2wBcGHnH2eXmz7tC6IwlqQZ6mVZ+6dm6vZ4IQIHjs6FdNsQBuKGPuUUUY6NfJw2PshC08Tn6LzLDOag==
 
 object-path@^0.11.4:
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
-  integrity sha1-NwrnUvvzfePqcKhhwju6iRVpGUk=
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.5.tgz#d4e3cf19601a5140a55a16ad712019a9c50b577a"
+  integrity sha512-jgSbThcoR/s+XumvGMTMf81QVBmah+/Q7K7YduKeKVWL7N111unR2d6pZZarSk6kY/caeNxUDyxOvMWyzoU2eg==
 
 object.getownpropertydescriptors@^2.0.3:
   version "2.0.3"
