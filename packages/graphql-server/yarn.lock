@@ -112,6 +112,38 @@
     ts-node-dev "^1.0.0-pre.32"
     typescript "^3.0.3"
 
+"@trx/core@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@trx/core/-/core-0.0.12.tgz#c850661792679aa2af64619156f6f6229361a42c"
+  integrity sha512-U801zxjhpL0yszpg2wBEwIcb2+6/fWXQd0OOtzzbWu36xqL4phlGUFbxwgysWDdGCq0ayK8nNnZNHeKHDugukQ==
+  dependencies:
+    "@types/buffers" "^0.1.31"
+    "@types/es6-promise" "^3.3.0"
+    "@types/expect" "^1.20.3"
+    "@types/lodash" "^4.14.119"
+    "@types/mocha" "^5.2.5"
+    assert "^1.4.1"
+    axios "^0.18.0"
+    bignumber.js "^8.0.1"
+    bs58 "^4.0.1"
+    chai "^4.1.2"
+    commander "^2.19.0"
+    csv-reader "^1.0.3"
+    elliptic "^6.4.1"
+    ethers "^4.0.20"
+    express "^4.16.4"
+    js-sha3 "^0.8.0"
+    jssha "^2.3.1"
+    lodash "^4.17.11"
+    module-alias "^2.2.0"
+    rxjs "^6.3.3"
+    sequelize "^4.42.0"
+    sha3 "^1.2.2"
+    tronweb "^2.1.17"
+    ts-node "^7.0.1"
+    ts-node-dev "^1.0.0-pre.32"
+    typescript "^3.0.3"
+
 "@trx/graphql@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@trx/graphql/-/graphql-0.0.6.tgz#26957e139b55925c2c41cc0865fce21db0aae0fc"
@@ -666,6 +698,13 @@ axios@^0.18.0:
     follow-redirects "^1.3.0"
     is-buffer "^1.1.5"
 
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
@@ -946,7 +985,7 @@ debug@2.6.9, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@^3.1.0, debug@^3.2.6:
+debug@^3.1.0:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
@@ -1187,12 +1226,10 @@ find-up@^1.0.0:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
-follow-redirects@^1.3.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
-  integrity sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
-  dependencies:
-    debug "^3.2.6"
+follow-redirects@^1.10.0, follow-redirects@^1.3.0:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
+  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
 
 forwarded@~0.1.2:
   version "0.1.2"
